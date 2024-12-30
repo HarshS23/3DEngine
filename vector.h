@@ -15,4 +15,6 @@ Vec3 mul_v3(Vec3 v, int x);
 Vec3 div_v3(Vec3 v, int x);
 float dot_v3(Vec3 v1, Vec3 v2);
 float len_v3(Vec3 v);
-Vec3 normalize_v3(v1);
+Vec3 normalize_v3(Vec3 v1);
+void print_v3(Vec3 v);
+

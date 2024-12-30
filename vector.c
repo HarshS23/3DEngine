@@ -58,3 +58,7 @@ Vec3 normalize_v3(Vec3 v1){
         return mul_v3(v1, 1.0f);
     }
 }
+
+void print_v3(Vec3 v){
+    printf("\nVECTOR: v.x: %lf, v.y: %lf, v.z: %lf ----\n", v.x, v.y, v.z);
+}
