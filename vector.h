@@ -9,12 +9,20 @@ typedef struct{
     float z;
 }Vec3;
 
-Vec3 add_v3(Vec3 v1, Vec3 v2);
-Vec3 sub_v3(Vec3 v1, Vec3 v2);
-Vec3 mul_v3(Vec3 v, int x);
-Vec3 div_v3(Vec3 v, int x);
-float dot_v3(Vec3 v1, Vec3 v2);
-float len_v3(Vec3 v);
-Vec3 normalize_v3(Vec3 v1);
-void print_v3(Vec3 v);
+typedef struct{
+    float x;
+    float y;
+    float z; 
+    float w;
+}Vec4;
+
+Vec3 add_v3(const Vec3 v1, const Vec3 v2);
+Vec3 sub_v3(const Vec3 v1, const Vec3 v2);
+Vec3 mul_v3(const Vec3 v, const int x);
+Vec3 div_v3(const Vec3 v, const int x);
+float dot_v3(const Vec3 v1, const Vec3 v2);
+float len_v3(const Vec3 v);
+Vec3 normalize_v3(const Vec3 v1);
+Vec3 cross_v3(const Vec3 v1, const Vec3 v2);
+void print_v3(const Vec3 v);
 
