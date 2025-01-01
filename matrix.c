@@ -1,4 +1,8 @@
 #include "matrix.h"
+#include <stddef.h>
+#include "vector.h"
+#include "math.h"
+
 
 // Memory:
 // +------+------+------+------+
@@ -91,6 +95,38 @@ Matrix4 ProjectionMatrix(const float fov, const float aspect, const float znear,
 }
 
 Matrix4 Multiply_Matrices(Matrix4 m1, Matrix4 m2){
+    Matrix4 m;
 
-    return 1;
+    for(size_t i; i < 4; i++){
+        for(size_t j; j < 4; j++){
+            m.matrix[i][j] = m1.matrix[i][0] * m2.matrix[j][0]\
+                + m1.matrix[i][1] * m2.matrix[j][1]
+                + m1.matrix[i][2] * m2.matrix[j][2]
+                + m1.matrix[i][3] * m2.matrix[j][3];
+        }
+    }
+
+    return m;
+}
+
+Vec4 Multiply_Matrix_by_Vector(const Matrix4 m, const Vec4 v){
+    Vec4 vector; 
+    vector.x = (m.matrix[0][0] * v.x) + (m.matrix[0][1] * v.y) + (m.matrix[0][2] * v.z) + (m.matrix[0][3] * v.w);
+    vector.y = (m.matrix[1][0] * v.x) + (m.matrix[1][1] * v.y) + (m.matrix[1][2] * v.z) + (m.matrix[1][3] * v.w);
+    vector.z = (m.matrix[2][0] * v.x) + (m.matrix[2][1] * v.y) + (m.matrix[2][2] * v.z) + (m.matrix[2][3] * v.w);
+    vector.w = (m.matrix[3][0] * v.x) + (m.matrix[3][1] * v.y) + (m.matrix[3][2] * v.z) + (m.matrix[3][3] * v.w);
+
+    return vector;
+}
+
+Vec4 Multiply_Projection_by_Vector(const Matrix4 matrixProj, const Vec4 vector){
+    Vec4 result = Multiply_Matrix_by_Vector(matrixProj, vector);
+
+    if(result.w != 0.0){
+        result.x /= result.w;
+        result.y /= result.w;
+        result.z /= result.w;
+    }
+
+    return result;
 }
