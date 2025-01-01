@@ -130,3 +130,9 @@ Vec4 Multiply_Projection_by_Vector(const Matrix4 matrixProj, const Vec4 vector){
 
     return result;
 }
+
+Matrix4 View_Matrix(Vec3 eye, Vec3 target, Vec3 up){
+    Vec3 z = sub_v3(target, eye);
+    normalize_v3(z);
+
+}

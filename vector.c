@@ -50,13 +50,11 @@ float len_v3(Vec3 v){
     return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-Vec3 normalize_v3(Vec3 v1){
-    float mag = len_v3(v1);
-    if (mag == 0){
-        return (Vec3){0,0,0};
-    }else{
-        return mul_v3(v1, 1.0f);
-    }
+void normalize_v3(Vec3 *v){
+    float len = len_v3(*v);
+    v->x /= len; 
+    v->y /= len; 
+    v->z /= len; 
 }
 
 void print_v3(Vec3 v){
