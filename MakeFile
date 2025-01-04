@@ -1,2 +1,29 @@
-# this is the make file 
-#FLAGS 
+# Compiler and Flags
+CC = gcc
+CFLAGS = -std=c11 -Wall -Wextra -pedantic $(shell pkg-config --cflags sdl2 SDL2_image SDL2_ttf)
+LDFLAGS = $(shell pkg-config --libs sdl2 SDL2_image SDL2_ttf) -lm
+
+# Directories
+SRC_DIR = .
+BIN_DIR = ./bin
+
+# Source Files
+SRC = $(wildcard $(SRC_DIR)/*.c)
+
+# Output Binary
+BIN = $(BIN_DIR)/3dengine
+
+# Default Target
+all: build
+
+# Build Target
+build: bin-dir
+	$(CC) $(CFLAGS) $(SRC) -o $(BIN) $(LDFLAGS)
+
+# Create Bin Directory
+bin-dir:
+	mkdir -p $(BIN_DIR)
+
+# Clean Build Artifacts
+clean:
+	rm -rf $(BIN_DIR)/*

@@ -132,7 +132,17 @@ Vec4 Multiply_Projection_by_Vector(const Matrix4 matrixProj, const Vec4 vector){
 }
 
 Matrix4 View_Matrix(Vec3 eye, Vec3 target, Vec3 up){
-    Vec3 z = sub_v3(target, eye);
-    normalize_v3(z);
+    Vec3 z = sub_v3(target, eye); // forward Vector 
+    normalize_v3(&z); // normalized forward Vector 
+    Vec3 x = cross_v3(up,z); // right Vector
+    normalize_v3(&x);
+    Vec3 y = cross_v3(z,x); 
 
-}
+    Matrix4 m = {
+        .matrix = {{x.x, x.y, x.z, -dot_v3(x,y)},
+                 {y.x, y.y, y.z, -dot_v3(y,eye)},
+                 {z.x, z.y, z.z, -dot_v3(z,eye)},
+                 {0,0,0,1}}
+    };
+    return m;
+} 

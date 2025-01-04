@@ -22,7 +22,7 @@ Vec3 mul_v3(const Vec3 v, const int x);
 Vec3 div_v3(const Vec3 v, const int x);
 float dot_v3(const Vec3 v1, const Vec3 v2);
 float len_v3(const Vec3 v);
-Vec3 normalize_v3(const Vec3 v1);
+void normalize_v3(const Vec3 *v);
 Vec3 cross_v3(const Vec3 v1, const Vec3 v2);
 void print_v3(const Vec3 v);
 

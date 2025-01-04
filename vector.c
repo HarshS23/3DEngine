@@ -57,6 +57,14 @@ void normalize_v3(Vec3 *v){
     v->z /= len; 
 }
 
+Vec3 cross_v3(const Vec3 v1, const Vec3 v2){
+    Vec3 m;
+    m.x = v1.y * v2.z - v1.z * v2.y;
+    m.y = v1.z * v2.x - v1.x * v2.z;
+    m.z = v1.x * v2.y - v1.y * v2.x;
+    return m;
+}
+
 void print_v3(Vec3 v){
     printf("\nVECTOR: v.x: %lf, v.y: %lf, v.z: %lf ----\n", v.x, v.y, v.z);
 }
