@@ -34,6 +34,7 @@ Matrix4 Identity(void){
         {0,0,0,1},
     }
    };
+   return mat4x4;
 }
 
 // translation matrix
@@ -51,6 +52,7 @@ Matrix4 scale_matrix(const float sx, const float sy, const float sz){
     m.matrix[0][0] = sx; 
     m.matrix[1][1] = sy; 
     m.matrix[2][2] = sz;
+    return m;
 }
 
 Matrix4 rotation_matrix_x_axis(const float angle){
@@ -92,13 +94,14 @@ Matrix4 ProjectionMatrix(const float fov, const float aspect, const float znear,
     m.matrix[1][1] = b; 
     m.matrix[2][2] = c; 
     m.matrix[2][3] = d;
+    return m;
 }
 
 Matrix4 Multiply_Matrices(Matrix4 m1, Matrix4 m2){
     Matrix4 m;
 
-    for(size_t i; i < 4; i++){
-        for(size_t j; j < 4; j++){
+    for(size_t i = 0; i < 4; i++){
+        for(size_t j = 0; j < 4; j++){
             m.matrix[i][j] = m1.matrix[i][0] * m2.matrix[j][0]\
                 + m1.matrix[i][1] * m2.matrix[j][1]
                 + m1.matrix[i][2] * m2.matrix[j][2]
@@ -144,5 +147,7 @@ Matrix4 View_Matrix(Vec3 eye, Vec3 target, Vec3 up){
                  {z.x, z.y, z.z, -dot_v3(z,eye)},
                  {0,0,0,1}}
     };
+
     return m;
 } 
+

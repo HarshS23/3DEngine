@@ -22,23 +22,22 @@ Vec3 sub_v3(Vec3 v1, Vec3 v2){
 }
 
 Vec3 mul_v3(Vec3 v,  int x){
-    Vec3 output = {0,0,0};
 
-    output.x *= x; 
-    output.y *= x; 
-    output.z *= x;
+    v.x *= x; 
+    v.y *= x; 
+    v.z *= x;
 
-    return output;
+    return v;
 }
 
 Vec3 div_v3(Vec3 v ,  int x){
-    Vec3 output = {0,0,0};
+    
 
-    output.x /= x; 
-    output.y /= x; 
-    output.z /= x;
+    v.x /= x; 
+    v.y /= x; 
+    v.z /= x;
 
-    return output;
+    return v;
 
 }
 
@@ -68,3 +67,4 @@ Vec3 cross_v3(const Vec3 v1, const Vec3 v2){
 void print_v3(Vec3 v){
     printf("\nVECTOR: v.x: %lf, v.y: %lf, v.z: %lf ----\n", v.x, v.y, v.z);
 }
+
