@@ -22,23 +22,11 @@ Vec3 sub_v3(Vec3 v1, Vec3 v2){
 }
 
 Vec3 mul_v3(Vec3 v,  int x){
-
-    v.x *= x; 
-    v.y *= x; 
-    v.z *= x;
-
-    return v;
+    return (Vec3){v.x * x, v.y * x, v.z * x};
 }
 
 Vec3 div_v3(Vec3 v ,  int x){
-    
-
-    v.x /= x; 
-    v.y /= x; 
-    v.z /= x;
-
-    return v;
-
+    return (Vec3){v.x / x, v.y / x, v.z / x};
 }
 
 float dot_v3(Vec3 v1, Vec3 v2){
