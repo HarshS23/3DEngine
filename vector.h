@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -25,4 +28,4 @@ float len_v3(const Vec3 v);
 void normalize_v3(const Vec3 *v);
 Vec3 cross_v3(const Vec3 v1, const Vec3 v2);
 void print_v3(const Vec3 v);
-
+#endif

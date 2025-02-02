@@ -1,3 +1,7 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
+
 #include "vector.h"
 
 typedef struct{
@@ -15,3 +19,4 @@ Matrix4 Multiply_Matrices(Matrix4 m1, Matrix4 m2);
 Vec4 Multiply_Matrix_by_Vector(const Matrix4 m, const Vec4 v);
 Vec4 Multiply_Projection_by_Vector(const Matrix4 matrixProj, const Vec4 vector);
 Matrix4 View_Matrix(Vec3 eye, Vec3 target, Vec3 up);
+#endif
