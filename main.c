@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#define SCREEN_HEIGHT 1920 
+#define SCREEN_WIDTH 1080
+
 int main(void) {
 
     // initlizing SDL2
@@ -12,7 +15,12 @@ int main(void) {
 
     // Creating window 
     SDL_Window *window = SDL_CreateWindow("3D-GRAPHICS_ENGINE", \
-                                        SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,800,600,SDL_WINDOW_SHOWN);
+                                        SDL_WINDOWPOS_CENTERED,\
+                                        SDL_WINDOWPOS_CENTERED,\
+                                        SCREEN_HEIGHT,\
+                                        SCREEN_WIDTH,\
+                                        SDL_WINDOW_SHOWN);
+    
     
     if(!window){
         printf("ERROR,WINDOW DOES NOT EXIST %s\n", SDL_GetError());
