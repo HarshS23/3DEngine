@@ -24,7 +24,14 @@ int main(int argc, char *argv[]){
     }
 
     // allocating memory 
-    
+    vertices = malloc(Num_Vertices * sizeof(Vec3));
+    face = malloc(Num_Faces * sizeof(Faces));
+
+    if(vertices == NULL || face == NULL){
+        printf("FAILED TO ALLOCATE MEMORY\n");
+        exit(EXIT_FAILURE);
+    }
+
 
 
     //printf("Enter an object file: ");
