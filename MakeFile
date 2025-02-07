@@ -1,29 +1,31 @@
-# Compiler and Flags
-CC = gcc
-CFLAGS = -std=c11 -Wall -Wextra -pedantic $(shell pkg-config --cflags sdl2 SDL2_image SDL2_ttf)
-LDFLAGS = $(shell pkg-config --libs sdl2 SDL2_image SDL2_ttf) -lm
+CC = /usr/bin/clang
+CFLAGS = -Wall -Wextra -std=c17 -I/opt/homebrew/include -I"${workspaceFolder}/**" -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+LDFLAGS = -L/opt/homebrew/lib -lSDL2
+SRC = main.c matrix.c vector.c 
+OBJ = $(SRC:.c=.o)
+EXEC = bin/engine
 
-# Directories
-SRC_DIR = .
-BIN_DIR = ./bin
-
-# Source Files
-SRC = $(wildcard $(SRC_DIR)/*.c)
-
-# Output Binary
-BIN = $(BIN_DIR)/3dengine
-
-# Default Target
+# Default target: Builds and runs the program
 all: build
+	@./$(EXEC)
 
-# Build Target
-build: bin-dir
-	$(CC) $(CFLAGS) $(SRC) -o $(BIN) $(LDFLAGS)
+# Build target: Just compiles the program
+build: $(EXEC)
 
-# Create Bin Directory
-bin-dir:
-	mkdir -p $(BIN_DIR)
+# Create the bin directory if it doesn't exist
+bin:
+	mkdir -p bin
 
-# Clean Build Artifacts
+# Link the final executable
+$(EXEC): bin $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) -o $(EXEC)
+
+# Compile object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean: Remove the executable and any object files
 clean:
-	rm -rf $(BIN_DIR)/*
+	rm -f $(OBJ) $(EXEC)
+
+.PHONY: all build clean

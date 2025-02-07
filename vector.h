@@ -5,7 +5,13 @@
 #include <math.h>
 #include <stdlib.h>
 
-// 3 dimensional Vector data type 
+// Vector data types 
+typedef struct{
+    float x; 
+    float y;
+
+}Vec2;
+
 typedef struct{
     float x; 
     float y; 
