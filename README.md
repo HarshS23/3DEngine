@@ -42,3 +42,10 @@ trying to make a 3d engine
     5. Optimization 
         - Implement Level of detail to decrease details for objects far from camera, and increase detail 
           of objects closer to the camera. 
+
+
+# SIDENOTE 
+    v x y z → Defines a vertex with (x, y, z) coordinates.
+    vt u v → Defines a texture coordinate (u, v values for mapping a texture).
+    vn x y z → Defines a normal vector.
+    f v1/vt1/vn1 v2/vt2/vn2 v3/vt3/vn3 → Defines a face by specifying vertex indices, texture coordinate indices, and normal indices.
