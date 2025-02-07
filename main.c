@@ -1,22 +1,44 @@
 #include "main.h"
+//gcc -o obj_parser main.c -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
+
+
+Vec3 *vertices = NULL; // stores the array of vertices 
+int Num_Vertices = 0; // number of vertices in our array
+
+Faces *face = NULL; // array to store faces 
+int Num_Faces = 0; // number of faces in our array 
+
+Vec3 *Normal_Vec = NULL;
+int Num_Nvec = 0;
+
+Text *texture = NULL; 
+int Num_text = 0;
+
+
+char line[128];
+//./obj_parser air-line.obj
+
+
+void ParseFile(const char *filename);
+
 
 
 int main(int argc, char *argv[]){
 
-    Vec3 *vertices = NULL; // stores the array of vertices 
-    int Num_Vertices = 0; // number of vertices in our array
+    ParseFile("air-line.obj");
 
-    Faces *face = NULL; // array to store faces 
-    int Num_Faces = 0; // number of faces in our array 
+    free(vertices);
+    free(face); 
+    free(Normal_Vec);
+    free(texture);
 
-    Vec3 *Normal_Vec = NULL;
-    int Num_Nvec = 0;
-
-    Text *texture = NULL; 
-    int Num_text = 0;
+    return 0;
+}
 
 
-    char line[128];
+
+
+void ParseFile(const char *filename){
 
     FILE *fread = fopen("air-line.obj", "r");
 
@@ -65,7 +87,7 @@ int main(int argc, char *argv[]){
             sscanf(line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &face[FIndex].v1, &face[FIndex].vt1, &face[FIndex].vn1,\ 
                                                          &face[FIndex].v2, &face[FIndex].vt2, &face[FIndex].vn2,\
                                                          &face[FIndex].v3, &face[FIndex].vt3, &face[FIndex].vn3);
-            FIndex;
+            FIndex++;
         }
 
         // defines normal vector  vn 
@@ -79,5 +101,7 @@ int main(int argc, char *argv[]){
             TIndex++;
         }
     } 
-    return 0;
+
+    fclose(fread);
+
 }

@@ -17,7 +17,7 @@ typedef struct{
 typedef struct {
     int v1, v2, v3; // vector indcies 
     int vt1, vt2, vt3; // texture indicies 
-    int vn1, vn2, vn3 // normal indicies 
+    int vn1, vn2, vn3; // normal indicies 
 
 }Faces;
 
