@@ -20,10 +20,13 @@ extern int Num_Nvec;
 extern Text *texture; 
 extern int Num_text;
 
+extern int Num_Lines;
+
 
 extern char line[128];
 
 void ParseFile(const char *filename);
+void PrintData();
 
 
 #endif 
