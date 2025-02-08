@@ -27,6 +27,7 @@ extern char line[128];
 
 void ParseFile(const char *filename);
 void PrintData();
+void Converter(); // converts 3D Vector to 2D points  
 
 
 #endif 

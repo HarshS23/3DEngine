@@ -10,6 +10,13 @@ typedef struct{
 
 }Vec3;
 
+typedef struct{
+
+    float x; 
+    float y;
+
+}Vec2;
+
 // Defines a face by specifing vertex indices ,texture indices, and normal indices 
 // format is 
 //f v/vt/vn --> Vector indices / textues indices /normal indicies 

@@ -14,9 +14,9 @@ Text *texture = NULL;
 int Num_text = 0;
 
 int Num_Lines = 0;
-//int main(int argc, char *argv[]){
-
 char line[128];
+
+//int main(int argc, char *argv[]){
 
 int main(){
 
@@ -114,12 +114,33 @@ void ParseFile(const char *filename){
 void PrintData(){
 
     printf("\nSTART OF FILE\n");
-    printf("NUM OF LINES: %d\n", Num_Vertices);
+    printf("NUM OF LINES: %d\n", Num_Lines);
     printf("Vertices: \n");
 
-    for(int i = 0; i < Num_Vertices; i++){
-        printf("Line Number (%d) :v %f %f %f\n",i + 1,vertices[i].x,vertices[i].y,vertices[i].z);
+
+    for(int i = 0; i < Num_Vertices - 1; i++){
+        printf("v[%d]: %f %f %f\n", i, vertices[i].x, vertices[i].y, vertices[i].z);
     }
+
+    printf("\n");
+
+    for(int i = 0; i < Num_text - 1; i++){
+        printf("vt[%d]: %f %f\n", i, texture[i].u, texture[i].v);
+    }
+    
+    printf("\n");
+
+    for(int i = 0; i < Num_Nvec - 1 ; i++){
+        printf("vn[%d]: %f %f %f\n", i, Normal_Vec[i].x, Normal_Vec[i].y, Normal_Vec[i].z);
+    }
+    printf("\n");
+
+    for(int i = 0; i < Num_Faces - 1 ; i++){
+        printf("f[%d]: %d/%d/%d %d/%d/%d %d/%d/%d\n", i, face[i].v1, face[i].vt1, face[i].vn1,\
+                                                           face[i].v2, face[i].vt2, face[i].vn2,\
+                                                           face[i].v3, face[i].vt3, face[i].vn3);
+    }
+    
 
     printf("\nEND OF FILE\n");
 }
