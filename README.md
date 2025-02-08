@@ -1,51 +1,53 @@
-# 3DEngine
+# 3D Renderer using C and SDL2
 
-trying to make a 3d engine 
+## Overview
+This is a simple 3D graphics engine written in C using SDL2. The engine is designed to load and render `.obj` models while allowing basic camera movement to look around the model. It does not rotate the model itself.
 
-# What is a 3D Engine 
-    A 3d engine is a software, that is used to render 3 dimensional object on a 2 dimensional screen. 
+## Features
+- Load and parse `.obj` files
+- Convert 3D coordinates to 2D screen space
+- Render models using SDL2
+- Basic camera movement (looking around)
 
-# Core functions of a 3D Engine 
-    Render 
-        - needs to be able to display 3 Dimenisonal objects on to a 2 Dimensional screen 
-        - need to handle lighting, shading, texturing, the effects reflections have upon an object 
-    
-    input handling 
-        - Should capture user-input from devices, such as a keyboard, mouse, controllers
-    
-    Shaders and Post Processing 
-        - Should utilize GPU and create visual effects 
-    
-    Scene management 
-        - Should be able to place the object at the center of the screen 
-        - should be able to organize and optimize the rendering of a screen
-    
-# Creating a 3D Engine (Steps)
-    1. Render pipeline  
-        - learn basics of 3D graphics, such as Vectors, polygons,
-           shaders and lighting. 
-        - setting up a graphics api: I will be using SDL2, and will be programming 
-          in C99 for this project. 
-        - Render 2D triangles, before expanding to 3D triangles 
-        - implement Camera support 
-    
-    2. Lighting and Shading 
-        - implement basic lighting models such as ambient lighting, diffuesd lighting, and specular lighting. 
-        - write shaders to handle lighting, colors and materials 
-    
-    3. User input 
-        - taking in user input such as WASD, to move the camera around the render enviroment 
-    
-    4. Add Skeletal Support 
-        - Show skeletons of the object by using the 3D triangles 
-    
-    5. Optimization 
-        - Implement Level of detail to decrease details for objects far from camera, and increase detail 
-          of objects closer to the camera. 
+## Requirements
+- **C Compiler** (GCC or Clang recommended)
+- **SDL2** (Simple DirectMedia Layer)
 
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/HarshS23/3DEngine.git
+   cd 3d-renderer
+   ```
+2. Install SDL2 (if not already installed):
+   ```sh
+   sudo apt-get install libsdl2-dev  # Debian-based systems
+   brew install sdl2  # macOS
+   ```
+3. Compile the project:
+   ```sh
+   gcc main.c -o renderer -lSDL2 -lm
+   ```
+4. Run the program:
+   ```sh
+   ./renderer path/to/your/model.obj
+   ```
 
-# SIDENOTE 
-    v x y z → Defines a vertex with (x, y, z) coordinates.
-    vt u v → Defines a texture coordinate (u, v values for mapping a texture).
-    vn x y z → Defines a normal vector.
-    f v1/vt1/vn1 v2/vt2/vn2 v3/vt3/vn3 → Defines a face by specifying vertex indices, texture coordinate indices, and normal indices.
+## Usage
+- Load any `.obj` model by providing its path as an argument.
+- Use the keyboard/mouse to move the camera (implementation details can be added later).
+
+## Future Enhancements
+- Implement basic lighting/shading
+- Improve rendering performance
+- Add more interactive camera controls
+
+## License
+This project is open-source under the MIT License.
+
+## Contributions
+Feel free to submit issues or pull requests to improve the project!
+
+## Author
+[Adharsh Shokkalingam](https://github.com/HarshS23)
+

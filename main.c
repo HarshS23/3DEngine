@@ -1,10 +1,5 @@
 #include "main.h"
 //gcc -o obj_parser main.c -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
-// # Blender 3.6.5
-// # www.blender.org
-// mtllib air-liner.mtl
-// o air-liner
-
 Vec3 *vertices = NULL; // stores the array of vertices 
 int Num_Vertices = 0; // number of vertices in our array
 
