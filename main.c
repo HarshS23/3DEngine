@@ -1,5 +1,6 @@
 #include "main.h"
 //gcc -o obj_parser main.c -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
+
 Vec3 *vertices = NULL; // stores the array of vertices 
 int Num_Vertices = 0; // number of vertices in our array
 
@@ -13,17 +14,11 @@ Text *texture = NULL;
 int Num_text = 0;
 
 int Num_Lines = 0;
-
+//int main(int argc, char *argv[]){
 
 char line[128];
-//./obj_parser air-line.obj
 
-
-void ParseFile(const char *filename);
-
-
-
-int main(int argc, char *argv[]){
+int main(){
 
     ParseFile("air-liner.obj");
     PrintData();
@@ -80,8 +75,6 @@ void ParseFile(const char *filename){
 
     while(fgets(line, sizeof(line), fread)){
 
-        if (line[0] == '#') continue;
-
         //defines vertex  v
         if (line[0] == 'v' && line[1] == ' '){
             sscanf(line, "v %f %f %f", &vertices[VIndex].x,  &vertices[VIndex].y, &vertices[VIndex].z);
@@ -91,7 +84,7 @@ void ParseFile(const char *filename){
         // defines faces f
         //f v/vt/vn
         //f 3220/1805/2160 3205/1790/2160 3219/1804/2160 
-        if (line[0] == 'f' && line[1] == ' '){
+        else if (line[0] == 'f' && line[1] == ' '){
             sscanf(line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &face[FIndex].v1, &face[FIndex].vt1, &face[FIndex].vn1,\
                                                          &face[FIndex].v2, &face[FIndex].vt2, &face[FIndex].vn2,\
                                                          &face[FIndex].v3, &face[FIndex].vt3, &face[FIndex].vn3);
@@ -99,14 +92,18 @@ void ParseFile(const char *filename){
         }
 
         // defines normal vector  vn 
-        if (line[0] == 'v' && line [1] == 'n' && line[2] == ' '){
+        else if (line[0] == 'v' && line [1] == 'n' && line[2] == ' '){
             sscanf(line, "vn %f %f %f", &Normal_Vec[NIndex].x,&Normal_Vec[NIndex].y ,&Normal_Vec[NIndex].z);
             NIndex++;
         }
 
-        if (line[0] == 'v' && line[1] == 't' && line[2] == ' '){
+        else if (line[0] == 'v' && line[1] == 't' && line[2] == ' '){
             sscanf(line, "vt %f %f", &texture[TIndex].u, &texture[TIndex].v);
             TIndex++;
+        }
+
+        else{
+            continue;
         }
     } 
 
@@ -118,6 +115,7 @@ void PrintData(){
 
     printf("\nSTART OF FILE\n");
     printf("NUM OF LINES: %d\n", Num_Vertices);
+    printf("Vertices: \n");
 
     for(int i = 0; i < Num_Vertices; i++){
         printf("Line Number (%d) :v %f %f %f\n",i + 1,vertices[i].x,vertices[i].y,vertices[i].z);
