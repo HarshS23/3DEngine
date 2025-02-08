@@ -1,4 +1,7 @@
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 // defines a vertex with x,y,z cordinates 
@@ -33,3 +36,5 @@ typedef struct{
     float v;
 
 }Text;
+
+#endif

@@ -25,6 +25,9 @@ extern int Num_Lines;
 
 extern char line[128];
 
+#define SCREENWIDTH 800 
+#define SCREENHEIGHT 600
+
 void ParseFile(const char *filename);
 void PrintData();
 void Converter(); // converts 3D Vector to 2D points  

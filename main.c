@@ -124,22 +124,22 @@ void PrintData(){
 
     printf("\n");
 
-    for(int i = 0; i < Num_text - 1; i++){
-        printf("vt[%d]: %f %f\n", i, texture[i].u, texture[i].v);
-    }
-    
-    printf("\n");
+    // for(int i = 0; i < Num_text - 1; i++){
+    //     printf("vt[%d]: %f %f\n", i, texture[i].u, texture[i].v);
+    // }
 
-    for(int i = 0; i < Num_Nvec - 1 ; i++){
-        printf("vn[%d]: %f %f %f\n", i, Normal_Vec[i].x, Normal_Vec[i].y, Normal_Vec[i].z);
-    }
-    printf("\n");
+    // printf("\n");
 
-    for(int i = 0; i < Num_Faces - 1 ; i++){
-        printf("f[%d]: %d/%d/%d %d/%d/%d %d/%d/%d\n", i, face[i].v1, face[i].vt1, face[i].vn1,\
-                                                           face[i].v2, face[i].vt2, face[i].vn2,\
-                                                           face[i].v3, face[i].vt3, face[i].vn3);
-    }
+    // for(int i = 0; i < Num_Nvec - 1 ; i++){
+    //     printf("vn[%d]: %f %f %f\n", i, Normal_Vec[i].x, Normal_Vec[i].y, Normal_Vec[i].z);
+    // }
+    // printf("\n");
+
+    // for(int i = 0; i < Num_Faces - 1 ; i++){
+    //     printf("f[%d]: %d/%d/%d %d/%d/%d %d/%d/%d\n", i, face[i].v1, face[i].vt1, face[i].vn1,\
+    //                                                        face[i].v2, face[i].vt2, face[i].vn2,\
+    //                                                        face[i].v3, face[i].vt3, face[i].vn3);
+    // }
     
 
     printf("\nEND OF FILE\n");
