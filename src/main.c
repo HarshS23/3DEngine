@@ -1,5 +1,4 @@
 #include "main.h"
-//gcc -o obj_parser main.c -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
 
 Vec3 *vertices = NULL; // stores the array of vertices 
 int Num_Vertices = 0; // number of vertices in our array
@@ -14,20 +13,25 @@ Text *texture = NULL;
 int Num_text = 0;
 
 int Num_Lines = 0;
+
+Vec2 *vertices_2d = NULL;
+
 char line[128];
 
 //int main(int argc, char *argv[]){
 
 int main(){
 
-    ParseFile("air-liner.obj");
-    PrintData();
+    ParseFile("object_files/air-liner.obj");
 
+    //PrintData();
+    Vertices_Converter(vertices, Num_Vertices);
 
     free(vertices);
     free(face); 
     free(Normal_Vec);
     free(texture);
+    free(vertices_2d);
 
     return 0;
 }
@@ -124,23 +128,51 @@ void PrintData(){
 
     printf("\n");
 
-    // for(int i = 0; i < Num_text - 1; i++){
-    //     printf("vt[%d]: %f %f\n", i, texture[i].u, texture[i].v);
-    // }
+    for(int i = 0; i < Num_text - 1; i++){
+        printf("vt[%d]: %f %f\n", i, texture[i].u, texture[i].v);
+    }
 
-    // printf("\n");
+    printf("\n");
 
-    // for(int i = 0; i < Num_Nvec - 1 ; i++){
-    //     printf("vn[%d]: %f %f %f\n", i, Normal_Vec[i].x, Normal_Vec[i].y, Normal_Vec[i].z);
-    // }
-    // printf("\n");
+    for(int i = 0; i < Num_Nvec - 1 ; i++){
+        printf("vn[%d]: %f %f %f\n", i, Normal_Vec[i].x, Normal_Vec[i].y, Normal_Vec[i].z);
+    }
+    printf("\n");
 
-    // for(int i = 0; i < Num_Faces - 1 ; i++){
-    //     printf("f[%d]: %d/%d/%d %d/%d/%d %d/%d/%d\n", i, face[i].v1, face[i].vt1, face[i].vn1,\
-    //                                                        face[i].v2, face[i].vt2, face[i].vn2,\
-    //                                                        face[i].v3, face[i].vt3, face[i].vn3);
-    // }
+    for(int i = 0; i < Num_Faces - 1 ; i++){
+        printf("f[%d]: %d/%d/%d %d/%d/%d %d/%d/%d\n", i, face[i].v1, face[i].vt1, face[i].vn1,\
+                                                           face[i].v2, face[i].vt2, face[i].vn2,\
+                                                           face[i].v3, face[i].vt3, face[i].vn3);
+    }
     
 
     printf("\nEND OF FILE\n");
 }
+
+
+// Vec2* Vertices_Converter(const Vec3 *vertices, const int Num_Vertices){
+//     Vec2 *vertices_2d = malloc(Num_Vertices * sizeof(Vec2));
+
+//     if (vertices_2d == NULL){
+//         printf("UNABLE TO ALLOCATE MEMORY FOR 3D --> 2D CORDINATE CONVERSION\n");
+//         exit(EXIT_FAILURE);
+//     }
+
+//     for(int i = 0; i < Num_Vertices; i++){
+
+//         if (vertices[i].z <= 0){
+//             vertices_2d[i].x = vertices[i].x;
+//             vertices_2d[i].y = vertices[i].y;
+//         }else{
+//             vertices_2d[i].x = vertices[i].x / vertices[i].z;
+//             vertices_2d[i].y = vertices[i].y / vertices[i].z;
+//         }
+//     }
+
+//     for(int i = 0; i < Num_Vertices; i++){
+//         printf("%d: 2D-Coordinate %f %f\n", i, vertices_2d[i].x, vertices_2d[i].x);
+//     }
+
+//     return vertices_2d;
+// }
+

@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
+#include "/opt/homebrew/include/SDL2/SDL.h"
 #include "vector.h"
 
 
@@ -22,6 +23,8 @@ extern int Num_text;
 
 extern int Num_Lines;
 
+extern Vec2 *vertices_2d;
+
 
 extern char line[128];
 
@@ -30,7 +33,6 @@ extern char line[128];
 
 void ParseFile(const char *filename);
 void PrintData();
-void Converter(); // converts 3D Vector to 2D points  
 
 
 #endif 

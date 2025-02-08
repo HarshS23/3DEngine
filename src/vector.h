@@ -37,4 +37,6 @@ typedef struct{
 
 }Text;
 
+Vec2* Vertices_Converter(const Vec3 *vertices, const int Num_Vertice);  
+
 #endif

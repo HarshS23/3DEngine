@@ -1,32 +1,33 @@
 # Target: prereqs/dependices 
 # 	commands
-# gcc -o obj_parser main.c -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
 
-
-# Compiler
 CC = gcc
+CFLAGS = -Wall -Wextra -I/opt/homebrew/include/SDL2
+LDFLAGS = -L/opt/homebrew/lib -lSDL2 -lm
+SRC_DIR = src
+OBJ_DIR = bin
+OBJFILES = $(OBJ_DIR)/main.o $(OBJ_DIR)/vector.o $(OBJ_DIR)/upng.o
+TARGET = $(OBJ_DIR)/obj_parser
 
-# Compiler Flags
-CFLAGS = -Wall -Wextra -lm -L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2
+all: $(TARGET)
 
-# Source and Object Files
-SRC = main.c
-OBJ = $(SRC:.c=.o)
+$(TARGET): $(OBJFILES)
+	$(CC) $(OBJFILES) -o $(TARGET) $(LDFLAGS)
 
-# Output Executable
-EXECUTABLE = obj_parser
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.c $(SRC_DIR)/main.h $(SRC_DIR)/vector.h $(SRC_DIR)/upng.h
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.c -o $(OBJ_DIR)/main.o
 
-# Default Build Target
-all: $(EXECUTABLE)
+$(OBJ_DIR)/vector.o: $(SRC_DIR)/vector.c $(SRC_DIR)/vector.h
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/vector.c -o $(OBJ_DIR)/vector.o
 
-# Rule to Compile Executable
-$(EXECUTABLE): $(OBJ)
-	$(CC) $(OBJ) -o $(EXECUTABLE) $(CFLAGS)
+$(OBJ_DIR)/upng.o: $(SRC_DIR)/upng.c $(SRC_DIR)/upng.h
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/upng.c -o $(OBJ_DIR)/upng.o
 
-# Rule to Compile Object Files
-%.o: %.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+build: all
+	./$(TARGET)
 
-# Clean up Object Files and Executable
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	rm -rf $(OBJ_DIR)/*
