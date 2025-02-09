@@ -23,10 +23,11 @@ char line[128];
 int main(){
 
     ParseFile("object_files/air-liner.obj");
+    Vec2 *temp = Vertices_Converter(vertices, Num_Vertices);
+    ViewportTransformations(temp, Num_Vertices ,SCREENWIDTH, SCREENHEIGHT);
 
-    //PrintData();
-    Vertices_Converter(vertices, Num_Vertices);
 
+    // freeing dynamic arrays 
     free(vertices);
     free(face); 
     free(Normal_Vec);
@@ -148,31 +149,3 @@ void PrintData(){
 
     printf("\nEND OF FILE\n");
 }
-
-
-// Vec2* Vertices_Converter(const Vec3 *vertices, const int Num_Vertices){
-//     Vec2 *vertices_2d = malloc(Num_Vertices * sizeof(Vec2));
-
-//     if (vertices_2d == NULL){
-//         printf("UNABLE TO ALLOCATE MEMORY FOR 3D --> 2D CORDINATE CONVERSION\n");
-//         exit(EXIT_FAILURE);
-//     }
-
-//     for(int i = 0; i < Num_Vertices; i++){
-
-//         if (vertices[i].z <= 0){
-//             vertices_2d[i].x = vertices[i].x;
-//             vertices_2d[i].y = vertices[i].y;
-//         }else{
-//             vertices_2d[i].x = vertices[i].x / vertices[i].z;
-//             vertices_2d[i].y = vertices[i].y / vertices[i].z;
-//         }
-//     }
-
-//     for(int i = 0; i < Num_Vertices; i++){
-//         printf("%d: 2D-Coordinate %f %f\n", i, vertices_2d[i].x, vertices_2d[i].x);
-//     }
-
-//     return vertices_2d;
-// }
-

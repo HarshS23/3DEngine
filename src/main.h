@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-//#include <SDL2/SDL.h>
 #include "/opt/homebrew/include/SDL2/SDL.h"
 #include "vector.h"
+#include "viewport.h"
 
 
 extern Vec3 *vertices; // stores the array of vertices 
@@ -28,8 +28,8 @@ extern Vec2 *vertices_2d;
 
 extern char line[128];
 
-#define SCREENWIDTH 800 
-#define SCREENHEIGHT 600
+#define SCREENWIDTH 1080 
+#define SCREENHEIGHT 920
 
 void ParseFile(const char *filename);
 void PrintData();

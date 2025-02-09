@@ -1,27 +1,30 @@
 #include "vector.h"
 
 Vec2* Vertices_Converter(const Vec3 *vertices, const int Num_Vertices){
-    Vec2 *vertices_2d = malloc(Num_Vertices * sizeof(Vec2));
+    
+    Vec2 *projected = malloc(Num_Vertices * sizeof(Vec2));
 
-    if (vertices_2d == NULL){
+    if (projected == NULL){
         printf("UNABLE TO ALLOCATE MEMORY FOR 3D --> 2D CORDINATE CONVERSION\n");
         exit(EXIT_FAILURE);
     }
 
+    // converts all 3d (x,y,z) values to 2d(x,y) values for projection
+
     for(int i = 0; i < Num_Vertices; i++){
 
         if (vertices[i].z <= 0){
-            vertices_2d[i].x = vertices[i].x;
-            vertices_2d[i].y = vertices[i].y;
+            projected[i].x = vertices[i].x;
+            projected[i].y = vertices[i].y;
         }else{
-            vertices_2d[i].x = vertices[i].x / vertices[i].z;
-            vertices_2d[i].y = vertices[i].y / vertices[i].z;
+            projected[i].x = vertices[i].x / vertices[i].z;
+            projected[i].y = vertices[i].y / vertices[i].z;
         }
     }
 
-    for(int i = 0; i < Num_Vertices; i++){
-        printf("%d: 2D-Coordinate %f %f\n", i, vertices_2d[i].x, vertices_2d[i].x);
-    }
+    // for(int i = 0; i < Num_Vertices; i++){
+    //     printf("%d: 2D-Coordinate %f %f\n", i, projected[i].x, projected[i].x);
+    // }
 
-    return vertices_2d;
+    return projected;
 }
