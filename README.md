@@ -33,6 +33,11 @@ This is a simple 3D graphics engine written in C using SDL2. The engine is desig
    ./renderer path/to/your/model.obj
    ```
 
+## Project Preview
+   ![Project Preview](assets/Screenshot1.png)
+
+
+
 ## Usage
 - Load any `.obj` model by providing its path as an argument.
 - Use the keyboard/mouse to move the camera (implementation details can be added later).

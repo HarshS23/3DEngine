@@ -7,9 +7,9 @@ Vec2* ViewportTransformations(Vec2 *projected, const int Num_Vertices ,const int
         projected[i].y = (1 - (projected[i].y + 1) / 2) * SHeight;
     }
 
-    for(int i = 0; i < Num_Vertices; i++){
-        printf("Viewport cords: ( %f , %f )\n", projected[i].x, projected[i].y);
-    }
+    // for(int i = 0; i < Num_Vertices; i++){
+    //     printf("Viewport cords: ( %f , %f )\n", projected[i].x, projected[i].y);
+    // }
 
     return projected;
 

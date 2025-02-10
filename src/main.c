@@ -16,16 +16,83 @@ int Num_Lines = 0;
 
 Vec2 *vertices_2d = NULL;
 
+SDL_Renderer *renderer = NULL;
+
+SDL_Window *window = NULL;
+
 char line[128];
 
 //int main(int argc, char *argv[]){
+int initlizeWindow(void){
+    if(SDL_Init(SDL_INIT_EVERYTHING) != 0){
+        printf("ERROR UNABLE TO INITLIZE\n");
+        exit(EXIT_FAILURE);
+    } 
+
+    window = SDL_CreateWindow("3D-RENDER", \
+                              SDL_WINDOWPOS_CENTERED,\
+                              SDL_WINDOWPOS_CENTERED,\
+                              SCREENWIDTH,\
+                              SCREENHEIGHT,\
+                              0);
+    
+    if (!window){
+        printf("ERROR CREATING SDL WINDOW\n");
+        exit(EXIT_FAILURE);
+    }
+
+    renderer = SDL_CreateRenderer(window, -1 , 0);
+
+    if (renderer == NULL){
+        printf("SDL RENDERER UNABLE TO RENDER\n");
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        exit(EXIT_FAILURE);
+    }
+    return 1;
+}
+
+
+
+
+
 
 int main(){
 
     ParseFile("object_files/air-liner.obj");
-    Vec2 *temp = Vertices_Converter(vertices, Num_Vertices);
-    ViewportTransformations(temp, Num_Vertices ,SCREENWIDTH, SCREENHEIGHT);
+    vertices_2d = Vertices_Converter(vertices, Num_Vertices);
+    vertices_2d = ViewportTransformations(vertices_2d, Num_Vertices ,SCREENWIDTH, SCREENHEIGHT);
 
+    initlizeWindow();
+    RenderModel(renderer, vertices_2d, face, Num_Faces);
+
+
+    // main loop flag;
+    int running = 1;
+    SDL_Event event;
+
+    while(running){
+
+        while(SDL_PollEvent(&event)){
+            if(event.type == SDL_QUIT){
+                running = 0;
+            }
+        }
+
+        // make the background black
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+
+        // rendering the model
+        RenderModel(renderer, vertices_2d, face, Num_Faces);
+
+        SDL_RenderPresent(renderer);
+    }
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 
     // freeing dynamic arrays 
     free(vertices);
@@ -110,7 +177,12 @@ void ParseFile(const char *filename){
         else{
             continue;
         }
-    } 
+    }
+    
+    for (int i = 0; i < Num_Vertices; i++) {
+        vertices[i].z += 2.0;  // Move model backward
+    }
+
 
     fclose(fread);
 
@@ -149,3 +221,33 @@ void PrintData(){
 
     printf("\nEND OF FILE\n");
 }
+
+void RenderModel(SDL_Renderer *renderer ,const Vec2 *projected, const Faces *face, const int Num_Faces){
+
+    for(int i = 0; i < Num_Faces; i++){
+
+        // we have the faces in variables
+        int v1 = face[i].v1 - 1;
+        int v2 = face[i].v2 - 1;
+        int v3 = face[i].v3 - 1;
+
+        // now we get the 2d coordinates 
+
+        Vec2 p1 = projected[v1];
+        Vec2 p2 = projected[v2];
+        Vec2 p3 = projected[v3];
+
+
+        SDL_SetRenderDrawColor(renderer, 255 ,255, 255, 255);
+        SDL_RenderDrawLine(renderer, (int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y);
+        SDL_RenderDrawLine(renderer, (int)p2.x, (int)p2.y, (int)p3.x, (int)p3.y);
+        SDL_RenderDrawLine(renderer, (int)p3.x, (int)p3.y, (int)p1.x, (int)p1.y);
+
+    }
+
+
+
+}
+
+
+

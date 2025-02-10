@@ -25,6 +25,8 @@ extern int Num_Lines;
 
 extern Vec2 *vertices_2d;
 
+extern SDL_Renderer *renderer;
+
 
 extern char line[128];
 
@@ -33,7 +35,8 @@ extern char line[128];
 
 void ParseFile(const char *filename);
 void PrintData();
-
+void RenderModel(SDL_Renderer *renderer ,const Vec2 *projected, const Faces *face, const int Num_Faces);
+int initlizeWindow(void);
 
 #endif 
 
