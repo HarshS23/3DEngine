@@ -20,6 +20,9 @@ SDL_Renderer *renderer = NULL;
 
 SDL_Window *window = NULL;
 
+int running = 1;
+SDL_Event event;
+
 char line[128];
 
 //int main(int argc, char *argv[]){
@@ -42,6 +45,7 @@ int initlizeWindow(void){
     }
 
     renderer = SDL_CreateRenderer(window, -1 , 0);
+    //SDL_SetRelativeMouseMode(SDL_TRUE);
 
     if (renderer == NULL){
         printf("SDL RENDERER UNABLE TO RENDER\n");
@@ -56,7 +60,6 @@ int initlizeWindow(void){
 
 
 
-
 int main(){
 
     ParseFile("object_files/air-liner.obj");
@@ -66,10 +69,10 @@ int main(){
     initlizeWindow();
     RenderModel(renderer, vertices_2d, face, Num_Faces);
 
+    float yaw = 0.0;
+    float pitch = 0.0;
+    float sensitivity = 0.0002;
 
-    // main loop flag;
-    int running = 1;
-    SDL_Event event;
 
     while(running){
 
@@ -77,8 +80,20 @@ int main(){
             if(event.type == SDL_QUIT){
                 running = 0;
             }
+
+            if(event.type == SDL_KEYDOWN){
+                if(event.key.keysym.scancode == SDL_SCANCODE_ESCAPE){
+                    running = 0;
+                }
+            }
+
+            // if(event.type == SDL_MOUSEMOTION){
+            //     yaw += event.motion.xrel * sensitivity;
+            //     pitch += event.motion.yrel * sensitivity;
+            // }
         }
 
+        //printf("yaw: %f\n", yaw);
         // make the background black
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
@@ -88,6 +103,7 @@ int main(){
         RenderModel(renderer, vertices_2d, face, Num_Faces);
 
         SDL_RenderPresent(renderer);
+        
     }
 
     SDL_DestroyRenderer(renderer);
@@ -180,7 +196,7 @@ void ParseFile(const char *filename){
     }
     
     for (int i = 0; i < Num_Vertices; i++) {
-        vertices[i].z += 2.0;  // Move model backward
+        vertices[i].z += 1.50;  // Move model backward
     }
 
 
@@ -226,13 +242,12 @@ void RenderModel(SDL_Renderer *renderer ,const Vec2 *projected, const Faces *fac
 
     for(int i = 0; i < Num_Faces; i++){
 
-        // we have the faces in variables
+        // the faces in variables
         int v1 = face[i].v1 - 1;
         int v2 = face[i].v2 - 1;
         int v3 = face[i].v3 - 1;
 
-        // now we get the 2d coordinates 
-
+        // now we get the 2d coordinates
         Vec2 p1 = projected[v1];
         Vec2 p2 = projected[v2];
         Vec2 p3 = projected[v3];
@@ -244,8 +259,6 @@ void RenderModel(SDL_Renderer *renderer ,const Vec2 *projected, const Faces *fac
         SDL_RenderDrawLine(renderer, (int)p3.x, (int)p3.y, (int)p1.x, (int)p1.y);
 
     }
-
-
 
 }
 
