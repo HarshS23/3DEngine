@@ -7,8 +7,6 @@
 #include <vector.h>
 
 
-#define FOV 90.0f // in degrees 
-
 // defines the camera cordinate system
 typedef struct{
     Vec3 position;
