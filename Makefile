@@ -8,7 +8,7 @@ SRC_DIR = src
 EXECUTE = bin
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJFILES = $(patsubst $(SRC_DIR)/%.c, $(EXECUTE)/%.o, $(SRC_FILES))
-TARGET = $(EXECUTE)/obj_parser
+TARGET = $(EXECUTE)/3DRenderer
 
 all: $(TARGET)
 

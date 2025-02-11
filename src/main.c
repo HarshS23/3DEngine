@@ -69,9 +69,6 @@ int main(){
     initlizeWindow();
     RenderModel(renderer, vertices_2d, face, Num_Faces);
 
-    float yaw = 0.0;
-    float pitch = 0.0;
-    float sensitivity = 0.0002;
 
 
     while(running){
@@ -86,11 +83,6 @@ int main(){
                     running = 0;
                 }
             }
-
-            // if(event.type == SDL_MOUSEMOTION){
-            //     yaw += event.motion.xrel * sensitivity;
-            //     pitch += event.motion.yrel * sensitivity;
-            // }
         }
 
         //printf("yaw: %f\n", yaw);
@@ -196,7 +188,7 @@ void ParseFile(const char *filename){
     }
     
     for (int i = 0; i < Num_Vertices; i++) {
-        vertices[i].z += 1.50;  // Move model backward
+        vertices[i].z += 1.6;  // Move model forward
     }
 
 

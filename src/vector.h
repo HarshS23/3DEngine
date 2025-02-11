@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef struct {
+    float x; 
+    float y;
+    float z;
+    float w;
+}Vec4;
+
 // defines a vertex with x,y,z cordinates 
 typedef struct{
 
