@@ -14,14 +14,15 @@ typedef struct{
 }Matrix4;
 
 Matrix4 Identity();
-Matrix4 MultiplyMatrix(Matrix4 a, Matrix4 b);
-Matrix4 TranslationMatrix(float tx, float ty, float tz);
-Matrix4 ScalingMatrix(float sx, float sy, float sz);
-Matrix4 MultiplyByVectorMatrix(Matrix4 a, Vec4 v);
-Matrix4 MakeMatrixRotateX(float angle);
-Matrix4 MakeMatrixRotateY(float angle);
-Matrix4 MakeMatrixRotateZ(float angle);
-Matrix4 ViewMatrix(Vec3 x, Vec3 y, Vec3 z); // work in progress 
-Matrix4 ProjectionMatrix(float FOV, float width,float height ,float znear, float zfar);
+Matrix4 MultiplyMatrix(const Matrix4 a, const Matrix4 b);
+Matrix4 TranslationMatrix(const float tx, const float ty, const float tz);
+Matrix4 ScalingMatrix(const float sx, const float sy, const float sz);
+Matrix4 MultiplyByMatrix(const Matrix4 matrix1, const Matrix4 matrix2);
+Matrix4 MakeMatrixRotateX(const float angle);
+Matrix4 MakeMatrixRotateY(const float angle);
+Matrix4 MakeMatrixRotateZ(const float angle);
+Matrix4 CombineRotationMatrices(const float angle);
+Matrix4 ViewMatrix(const Vec3 x, const Vec3 y, const Vec3 z); // work in progress 
+Matrix4 ProjectionMatrix(const float FOV, const float width,const float height ,const float znear, const float zfar);
 
 #endif
