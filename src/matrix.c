@@ -77,16 +77,16 @@ Matrix4 MakeMatrixRotateZ(float angle){
 
 Matrix4 MultiplyByMatrix(const Matrix4 matrix1, const Matrix4 matrix2){
     Matrix4 matrix = Identity();
-
+    
     for(int x = 0; x < 4; x++){ // outer loop (rows)
         for(int y = 0; y < 4; y++){ // middle loop (columns)
+            matrix.data[x][y] = 0;
             for(int i = 0; i < 4; i++){ // inner loop (dot product)
-
-                void;
+                matrix.data[x][y] += matrix1.data[x][i] * matrix2.data[i][y];
+                printf("Matrix value at [%d][%d]: %f", x,y, matrix.data[x][y]);
             }
         }
     }
-
     return matrix;
 }
 
