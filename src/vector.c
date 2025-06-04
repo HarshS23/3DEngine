@@ -30,8 +30,8 @@ Vec2* Vertices_Converter(const Vec3 *vertices, const int Num_Vertices){
 }
 
 
-Vec3 dot(Vec3 a, Vec3 b){
+// Vec3 dot(Vec3 a, Vec3 b){
 
-    return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+//     return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 
-}
+// }
